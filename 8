@@ -1,0 +1,30 @@
+def is_anagram(str1, str2):
+    # Remove spaces and convert both strings to lowercase for comparison
+    str1 = str1.replace(" ", "").lower()
+    str2 = str2.replace(" ", "").lower()
+    
+    # Check if the lengths of the two strings are equal
+    if len(str1) != len(str2):
+        return False
+    
+    # Initialize dictionaries to store character counts for each string
+    char_count1 = {}
+    char_count2 = {}
+    
+    # Count characters in the first string
+    for char in str1:
+        char_count1[char] = char_count1.get(char, 0) + 1
+    
+    # Count characters in the second string
+    for char in str2:
+        char_count2[char] = char_count2.get(char, 0) + 1
+    
+    # Compare character counts to check if the strings are anagrams
+    return char_count1 == char_count2
+
+# Example usage:
+string1 = "listen"
+string2 = "silent"
+
+result = is_anagram(string1, string2)
+print("Are the strings anagrams:", result)
