@@ -1,0 +1,29 @@
+def longest_common_substring(str1, str2):
+    # Initialize a 2D table to store the lengths of common substrings
+    # Initialize a variable to keep track of the length of the longest common substring
+    common_lengths = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+    max_length = 0
+    
+    # Initialize variables to store the ending position of the longest common substring
+    end_position = 0
+    
+    # Fill in the table and track the length and ending position of the longest common substring
+    for i in range(1, len(str1) + 1):
+        for j in range(1, len(str2) + 1):
+            if str1[i - 1] == str2[j - 1]:
+                common_lengths[i][j] = common_lengths[i - 1][j - 1] + 1
+                if common_lengths[i][j] > max_length:
+                    max_length = common_lengths[i][j]
+                    end_position = i
+    
+    # Extract the longest common substring using the ending position and length
+    longest_common_substr = str1[end_position - max_length:end_position]
+    
+    return longest_common_substr
+
+# Example usage:
+str1 = "abcdefg"
+str2 = "xyzabcde"
+
+result = longest_common_substring(str1, str2)
+print("Longest common substring:", result)
